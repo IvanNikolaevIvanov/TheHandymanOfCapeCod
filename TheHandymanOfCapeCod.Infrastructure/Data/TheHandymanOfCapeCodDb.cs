@@ -1,6 +1,6 @@
 ﻿namespace TheHandymanOfCapeCod.Infrastructure.Data
 {
-    public class HandyManOfCapeCodDb : IdentityDbContext
+    public class TheHandymanOfCapeCodDb
     {
     }
 }
