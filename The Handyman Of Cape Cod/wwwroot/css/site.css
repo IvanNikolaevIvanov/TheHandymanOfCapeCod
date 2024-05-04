@@ -11,8 +11,44 @@ html {
 html {
   position: relative;
   min-height: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: rgba(0,0,0,.2)
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+
+#HomepageBody {
+    background-image: url("/THoCC_Logo17_RGB_WebRes.png");
+    min-height: 60vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: rgba(0,0,0,.2);
+    margin-top: 10px;
+    border-radius: 10px;
+    
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+.color-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.2);
+}
+
+@media (max-width: 768px){
+    #HomepageBody {
+        min-height: 30vh;
+    }
+    h1 {
+        font-size: calc(1.525rem + 3.3vw);
+    }
+}
+
