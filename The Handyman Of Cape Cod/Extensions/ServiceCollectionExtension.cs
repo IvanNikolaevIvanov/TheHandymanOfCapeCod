@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime.CompilerServices;
-using The_Handyman_Of_Cape_Cod.Data;
+using The_Handyman_Of_Cape_Cod.Infrastructure.Data;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
