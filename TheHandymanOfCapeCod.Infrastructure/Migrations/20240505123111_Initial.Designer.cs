@@ -11,7 +11,7 @@ using The_Handyman_Of_Cape_Cod.Infrastructure.Data;
 
 namespace TheHandymanOfCapeCod.Infrastructure.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(TheHandymanOfCapeCodDb))]
     [Migration("20240505123111_Initial")]
     partial class Initial
     {
