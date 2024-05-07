@@ -12,8 +12,8 @@ using The_Handyman_Of_Cape_Cod.Infrastructure.Data;
 namespace TheHandymanOfCapeCod.Infrastructure.Migrations
 {
     [DbContext(typeof(TheHandymanOfCapeCodDb))]
-    [Migration("20240505133140_DomainTablesAdded")]
-    partial class DomainTablesAdded
+    [Migration("20240507174646_Domain_Tables_Added")]
+    partial class Domain_Tables_Added
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -234,14 +234,14 @@ namespace TheHandymanOfCapeCod.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("ImgURL")
+                    b.Property<byte[]>("ImageData")
                         .IsRequired()
-                        .HasMaxLength(2000)
-                        .HasColumnType("nvarchar(2000)")
-                        .HasComment("Image URL");
+                        .HasColumnType("varbinary(max)")
+                        .HasComment("Image as byte[]");
 
-                    b.Property<int?>("ProjectId")
-                        .HasColumnType("int");
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int")
+                        .HasComment("Photo's project identifier");
 
                     b.HasKey("Id");
 
@@ -325,9 +325,13 @@ namespace TheHandymanOfCapeCod.Infrastructure.Migrations
 
             modelBuilder.Entity("TheHandymanOfCapeCod.Infrastructure.Data.Models.Photo", b =>
                 {
-                    b.HasOne("TheHandymanOfCapeCod.Infrastructure.Data.Models.Project", null)
+                    b.HasOne("TheHandymanOfCapeCod.Infrastructure.Data.Models.Project", "Project")
                         .WithMany("Photos")
-                        .HasForeignKey("ProjectId");
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("TheHandymanOfCapeCod.Infrastructure.Data.Models.Project", b =>

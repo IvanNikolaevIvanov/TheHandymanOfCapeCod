@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace TheHandymanOfCapeCod.Infrastructure.Migrations
 {
-    public partial class DomainTablesAdded : Migration
+    public partial class Domain_Tables_Added : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,8 +29,8 @@ namespace TheHandymanOfCapeCod.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ImgURL = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false, comment: "Image URL"),
-                    ProjectId = table.Column<int>(type: "int", nullable: true)
+                    ImageData = table.Column<byte[]>(type: "varbinary(max)", nullable: false, comment: "Image as byte[]"),
+                    ProjectId = table.Column<int>(type: "int", nullable: false, comment: "Photo's project identifier")
                 },
                 constraints: table =>
                 {
@@ -38,7 +39,8 @@ namespace TheHandymanOfCapeCod.Infrastructure.Migrations
                         name: "FK_Photos_Projects_ProjectId",
                         column: x => x.ProjectId,
                         principalTable: "Projects",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
