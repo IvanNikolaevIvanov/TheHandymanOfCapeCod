@@ -18,6 +18,12 @@ namespace TheHandymanOfCapeCod.Infrastructure.Data.SeedDb
         public Project FifthProject { get; set; } = null!;
         public Project SixthProject { get; set; } = null!;
 
+        public SeedData()
+        {
+            SeedUsers();
+            SeedProjects();
+        }
+
         private void SeedUsers()
         {
             var hasher = new PasswordHasher<IdentityUser>();
@@ -44,31 +50,31 @@ namespace TheHandymanOfCapeCod.Infrastructure.Data.SeedDb
                 Title = "Clam door, best choice for your bulkhead replacement"
             };
 
-            FirstProject = new Project()
+            SecondProject = new Project()
             {
                 Id = 2,
                 Title = "Full house transformation"
             };
 
-            FirstProject = new Project()
+            ThirdProject = new Project()
             {
                 Id = 3,
                 Title = "New Andersen bay window"
             };
 
-            FirstProject = new Project()
+            FourthProject = new Project()
             {
                 Id = 4,
                 Title = "New decking"
             };
 
-            FirstProject = new Project()
+            FifthProject = new Project()
             {
                 Id = 5,
                 Title = "New mahogany lattice"
             };
 
-            FirstProject = new Project()
+            SixthProject = new Project()
             {
                 Id = 6,
                 Title = "New trash cans closure out of Cedar"

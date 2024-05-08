@@ -11,7 +11,7 @@ namespace TheHandymanOfCapeCod.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Comment("Image as byte[]")]
-        public byte[] ImageData { get; set; } = new byte[0];
+        public byte[] ImageData { get; set; } = Array.Empty<byte>();
 
         [Required]
         [Comment("Photo's project identifier")]
