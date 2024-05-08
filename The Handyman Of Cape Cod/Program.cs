@@ -1,5 +1,15 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using The_Handyman_Of_Cape_Cod.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("TheHandymanOfCapeCodDbConnection") ?? throw new InvalidOperationException("Connection string 'TheHandymanOfCapeCodDbConnection' not found.");
+
+builder.Services.AddDbContext<TheHandymanOfCapeCodDb>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<TheHandymanOfCapeCodDb>();
 
 builder.Services.AddApplicationDbContext(builder.Configuration);
 builder.Services.AddApplicationIdentity(builder.Configuration);

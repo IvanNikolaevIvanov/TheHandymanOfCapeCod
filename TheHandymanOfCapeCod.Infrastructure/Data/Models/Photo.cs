@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using static TheHandymanOfCapeCod.Infrastructure.Constants.DataConstants;
 
 namespace TheHandymanOfCapeCod.Infrastructure.Data.Models
 {
