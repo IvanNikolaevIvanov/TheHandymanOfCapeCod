@@ -1,0 +1,17 @@
+﻿﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="card text-center">
+    <div class="card-header">
+        This is Admin Area
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Area only for administrators</h5>
+        <p class="card-text">If you are not administrator please leave now</p>
+        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary">Leave</a>
+    </div>
+    <div class="card-footer text-body-secondary">
+        @DateTime.Now
+    </div>
+</div>
