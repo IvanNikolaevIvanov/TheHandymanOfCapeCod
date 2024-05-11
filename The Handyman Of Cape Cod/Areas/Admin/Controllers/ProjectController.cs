@@ -2,7 +2,7 @@
 
 namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
 {
-    public class ProjectController : Controller
+    public class ProjectController : AdminBaseController
     {
         //public async Task<IActionResult> AllProjects()
         //{
