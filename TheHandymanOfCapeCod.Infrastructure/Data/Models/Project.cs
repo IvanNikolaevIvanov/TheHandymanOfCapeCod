@@ -16,6 +16,9 @@ namespace TheHandymanOfCapeCod.Infrastructure.Data.Models
         [Comment("Project Title")]
         public string Title { get; set; } = string.Empty;
 
+        [Required]
+        public DateTime DateCreated { get; set; } = DateTime.Now;
+
         [Comment("List of project's photos")]
         public List<Photo> Photos { get; set; } = new List<Photo>();
 

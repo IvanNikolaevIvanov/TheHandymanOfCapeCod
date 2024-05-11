@@ -47,37 +47,43 @@ namespace TheHandymanOfCapeCod.Infrastructure.Data.SeedDb
             FirstProject = new Project()
             {
                 Id = 1,
-                Title = "Clam door, best choice for your bulkhead replacement"
+                Title = "Clam door, best choice for your bulkhead replacement",
+                DateCreated = DateTime.Now
             };
 
             SecondProject = new Project()
             {
                 Id = 2,
-                Title = "Full house transformation"
+                Title = "Full house transformation",
+                DateCreated = DateTime.Now
             };
 
             ThirdProject = new Project()
             {
                 Id = 3,
-                Title = "New Andersen bay window"
+                Title = "New Andersen bay window",
+                DateCreated = DateTime.Now
             };
 
             FourthProject = new Project()
             {
                 Id = 4,
-                Title = "New decking"
+                Title = "New decking",
+                DateCreated = DateTime.Now
             };
 
             FifthProject = new Project()
             {
                 Id = 5,
-                Title = "New mahogany lattice"
+                Title = "New mahogany lattice",
+                DateCreated = DateTime.Now
             };
 
             SixthProject = new Project()
             {
                 Id = 6,
-                Title = "New trash cans closure out of Cedar"
+                Title = "New trash cans closure out of Cedar",
+                DateCreated = DateTime.Now
             };
         }
 

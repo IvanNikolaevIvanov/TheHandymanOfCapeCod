@@ -12,14 +12,14 @@ using The_Handyman_Of_Cape_Cod.Infrastructure.Data;
 namespace TheHandymanOfCapeCod.Infrastructure.Migrations
 {
     [DbContext(typeof(TheHandymanOfCapeCodDb))]
-    [Migration("20240508160601_DataSeedAdded")]
-    partial class DataSeedAdded
+    [Migration("20240511161900_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.26")
+                .HasAnnotation("ProductVersion", "6.0.29")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -145,15 +145,15 @@ namespace TheHandymanOfCapeCod.Infrastructure.Migrations
                         {
                             Id = "1c6c8b9b-12fe-49d0-8ad4-8df4b1e38345",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "18a1c7c6-00cc-4441-8521-ba9e40578d9c",
+                            ConcurrencyStamp = "44415009-64d5-4afe-808a-65c576acddd5",
                             Email = "admin@mail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAEC3XCAplcimf+O90A2vML35uDQ3J6MdZQ9a8RIC0mJyCmuB4VaxrngcSWQ4xDHyQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB8ScsR+BuY53ZulER8nuwRmt7kXnytPeG5Efl8ymTBSeEGIbjUr5W4VsExoa71VpQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1f8c7edb-f740-4409-88f9-a36e823aeae3",
+                            SecurityStamp = "4ff8122a-7aa5-446d-b119-d7a03775d8c6",
                             TwoFactorEnabled = false,
                             UserName = "admin@mail.com"
                         });
@@ -277,10 +277,13 @@ namespace TheHandymanOfCapeCod.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
                         .HasComment("Project Title");
 
                     b.HasKey("Id");
@@ -293,31 +296,37 @@ namespace TheHandymanOfCapeCod.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
+                            DateCreated = new DateTime(2024, 5, 11, 19, 18, 59, 869, DateTimeKind.Local).AddTicks(8117),
                             Title = "Clam door, best choice for your bulkhead replacement"
                         },
                         new
                         {
                             Id = 2,
+                            DateCreated = new DateTime(2024, 5, 11, 19, 18, 59, 869, DateTimeKind.Local).AddTicks(8124),
                             Title = "Full house transformation"
                         },
                         new
                         {
                             Id = 3,
+                            DateCreated = new DateTime(2024, 5, 11, 19, 18, 59, 869, DateTimeKind.Local).AddTicks(8130),
                             Title = "New Andersen bay window"
                         },
                         new
                         {
                             Id = 4,
+                            DateCreated = new DateTime(2024, 5, 11, 19, 18, 59, 869, DateTimeKind.Local).AddTicks(8136),
                             Title = "New decking"
                         },
                         new
                         {
                             Id = 5,
+                            DateCreated = new DateTime(2024, 5, 11, 19, 18, 59, 869, DateTimeKind.Local).AddTicks(8143),
                             Title = "New mahogany lattice"
                         },
                         new
                         {
                             Id = 6,
+                            DateCreated = new DateTime(2024, 5, 11, 19, 18, 59, 869, DateTimeKind.Local).AddTicks(8149),
                             Title = "New trash cans closure out of Cedar"
                         });
                 });

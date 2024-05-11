@@ -49,6 +49,21 @@ namespace TheHandymanOfCapeCod.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Projects",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "Project Identifier")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false, comment: "Project Title"),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Projects", x => x.Id);
+                },
+                comment: "Project info");
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -154,6 +169,44 @@ namespace TheHandymanOfCapeCod.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Photos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ImageData = table.Column<byte[]>(type: "varbinary(max)", nullable: false, comment: "Image as byte[]"),
+                    ProjectId = table.Column<int>(type: "int", nullable: false, comment: "Photo's project identifier")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Photos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Photos_Projects_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Projects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "1c6c8b9b-12fe-49d0-8ad4-8df4b1e38345", 0, "44415009-64d5-4afe-808a-65c576acddd5", "admin@mail.com", true, false, null, "ADMIN@MAIL.COM", "ADMIN@MAIL.COM", "AQAAAAEAACcQAAAAEB8ScsR+BuY53ZulER8nuwRmt7kXnytPeG5Efl8ymTBSeEGIbjUr5W4VsExoa71VpQ==", null, false, "4ff8122a-7aa5-446d-b119-d7a03775d8c6", false, "admin@mail.com" });
+
+            migrationBuilder.InsertData(
+                table: "Projects",
+                columns: new[] { "Id", "DateCreated", "Title" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2024, 5, 11, 19, 18, 59, 869, DateTimeKind.Local).AddTicks(8117), "Clam door, best choice for your bulkhead replacement" },
+                    { 2, new DateTime(2024, 5, 11, 19, 18, 59, 869, DateTimeKind.Local).AddTicks(8124), "Full house transformation" },
+                    { 3, new DateTime(2024, 5, 11, 19, 18, 59, 869, DateTimeKind.Local).AddTicks(8130), "New Andersen bay window" },
+                    { 4, new DateTime(2024, 5, 11, 19, 18, 59, 869, DateTimeKind.Local).AddTicks(8136), "New decking" },
+                    { 5, new DateTime(2024, 5, 11, 19, 18, 59, 869, DateTimeKind.Local).AddTicks(8143), "New mahogany lattice" },
+                    { 6, new DateTime(2024, 5, 11, 19, 18, 59, 869, DateTimeKind.Local).AddTicks(8149), "New trash cans closure out of Cedar" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -192,6 +245,11 @@ namespace TheHandymanOfCapeCod.Infrastructure.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Photos_ProjectId",
+                table: "Photos",
+                column: "ProjectId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -212,10 +270,16 @@ namespace TheHandymanOfCapeCod.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Photos");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Projects");
         }
     }
 }
