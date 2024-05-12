@@ -1,7 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using The_Handyman_Of_Cape_Cod.Infrastructure.Data;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationDbContext(builder.Configuration);
@@ -31,8 +27,16 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapDefaultControllerRoute();
-app.MapRazorPages();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "areas",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+        );
+
+    endpoints.MapDefaultControllerRoute();
+    endpoints.MapRazorPages();
+});
 
 await app.CreateAdminRoleAsync();
 
