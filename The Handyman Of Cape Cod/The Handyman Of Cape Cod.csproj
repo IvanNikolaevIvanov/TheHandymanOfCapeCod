@@ -27,8 +27,4 @@
     <ProjectReference Include="..\TheHandymanOfCapeCod.Core\TheHandymanOfCapeCod.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Models\" />
-  </ItemGroup>
-
 </Project>

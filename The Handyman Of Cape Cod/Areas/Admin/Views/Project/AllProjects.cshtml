@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ProjectViewModel>
+
+@{
+    ViewBag.Title = "All Projects";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <a asp-area="Admin" asp-controller="Project" asp-action="AddProject"
+       class="btn btn-primary mb-3">Add A New Project</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th><label>Id</label></th>
+            <th><label>Title</label></th>
+            <th><label>Date</label></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in Model)
+        {
+            <tr>
+                <td>
+                    <label>@project.Id</label>
+                </td>
+                <td>
+                    <label>
+                        <a asp-area="Admin" asp-controller="Project" asp-action="Details" asp-route-id="@project.Id">@project.Title</a>
+                        </label>
+                </td>
+                <td>
+                    <label>@project.ProjectStartDate</label>
+                </td>
+                 @* <td>
+                    <a class="btn btn-warning m-1" asp-controller="Specialist" asp-action="EditSpecialist"
+                       asp-route-id="@project.Id">Details</a>
+                </td> *@
+            </tr>
+        }
+
+    </tbody>
+</table>

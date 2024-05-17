@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using The_Handyman_Of_Cape_Cod.Infrastructure.Data;
+using TheHandymanOfCapeCod.Core.Contracts;
+using TheHandymanOfCapeCod.Core.Services;
 using TheHandymanOfCapeCod.Infrastructure.Data.Common;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -8,9 +10,11 @@ namespace Microsoft.Extensions.DependencyInjection
 
     public static class ServiceCollectionExtension
     {
-        public static IServiceCollection AddApplicationServices(this IServiceCollection service)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            return service;
+            services.AddScoped<IProjectService, ProjectService>();
+
+            return services;
         }
 
         public static IServiceCollection AddApplicationDbContext(this IServiceCollection services, IConfiguration config)

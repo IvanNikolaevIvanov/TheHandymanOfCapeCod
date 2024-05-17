@@ -1,15 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TheHandymanOfCapeCod.Core.Contracts;
+using TheHandymanOfCapeCod.Core.Services;
 
 namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
 {
     public class ProjectController : AdminBaseController
     {
-        //public async Task<IActionResult> AllProjects()
-        //{
-        //    var model = await projectService.AllCategoriesAsync();
+        private readonly IProjectService projectService;
 
-        //    return View(model);
-        //}
+        public ProjectController(IProjectService _projectService)
+        {
+             projectService = _projectService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AllProjects()
+        {
+            var model = await projectService.AllProjectsAsync();
+
+            return View(model);
+        }
 
         //[HttpGet]
         //public IActionResult AddCategory()
