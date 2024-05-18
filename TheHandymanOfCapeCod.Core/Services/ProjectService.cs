@@ -27,9 +27,35 @@ namespace TheHandymanOfCapeCod.Core.Services
                     ProjectStartDate = p.DateCreated.ToString(DataConstants.DateFormat)
                 })
                 .ToListAsync();
-                
+
 
             return projectsToShow;
+        }
+
+        public async Task<ProjectDetailsViewModel> ProjectDetailsByIdAsync(int id)
+        {
+            return await repository.AllReadOnly<Project>()
+                .Where(p => p.Id == id)
+                .Include(p => p.Photos)
+                .Select(p => new ProjectDetailsViewModel()
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                    ProjectStartDate = p.DateCreated.ToString(DataConstants.DateFormat),
+                    Photos = p.Photos.Select(p => new Models.Photo.PhotoViewModel()
+                    {
+                        Id = p.Id,
+                        ImageData = p.ImageData,
+                        ProjectId = p.Id
+                    }).ToList()
+                })
+                .FirstAsync();
+        }
+
+        public async Task<bool> ProjectExistsAsync(int id)
+        {
+            return await repository.AllReadOnly<Project>()
+                .AnyAsync(p => p.Id == id);
         }
     }
 }

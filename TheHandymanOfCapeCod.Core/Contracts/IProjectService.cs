@@ -6,5 +6,9 @@ namespace TheHandymanOfCapeCod.Core.Contracts
     {
         Task<IEnumerable<ProjectViewModel>> AllProjectsAsync();
 
+        Task<ProjectDetailsViewModel> ProjectDetailsByIdAsync(int id);
+
+        Task<bool> ProjectExistsAsync(int id);
+
     }
 }

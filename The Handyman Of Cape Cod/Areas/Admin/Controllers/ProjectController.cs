@@ -21,6 +21,19 @@ namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            if (!await projectService.ProjectExistsAsync(id))
+            {
+                return BadRequest();
+            }
+
+            var model = await projectService.ProjectDetailsByIdAsync(id);
+
+            return View(model);
+        }
+
         //[HttpGet]
         //public IActionResult AddCategory()
         //{
