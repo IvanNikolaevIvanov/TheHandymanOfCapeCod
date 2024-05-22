@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TheHandymanOfCapeCod.Core.Contracts;
-using TheHandymanOfCapeCod.Core.Services;
+using TheHandymanOfCapeCod.Core.Models.Project;
 
 namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
 {
@@ -38,13 +38,13 @@ namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
             return View(model);
         }
 
-        //[HttpGet]
-        //public IActionResult AddCategory()
-        //{
-        //    var model = new CategoryFormModel();
+        [HttpGet]
+        public IActionResult AddProject()
+        {
+            var model = new AddProjectFormModel();
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
 
         //[HttpPost]
         //public async Task<IActionResult> AddCategory(CategoryFormModel model)
