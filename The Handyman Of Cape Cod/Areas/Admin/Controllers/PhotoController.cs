@@ -31,7 +31,8 @@ namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
 
             ViewBag.Message = "Image(s) stored in database!";
 
-            return RedirectToAction(nameof(ProjectController.Details), nameof(ProjectController), new { id });
+            //return RedirectToAction(nameof(ProjectController.Details), nameof(ProjectController), new { id });
+            return RedirectToAction("Details", "ProjectController", new { area = "Admin", id = id });
         }
     }
 }

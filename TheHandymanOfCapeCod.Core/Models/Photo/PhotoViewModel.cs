@@ -1,12 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TheHandymanOfCapeCod.Core.Models.Photo
+﻿namespace TheHandymanOfCapeCod.Core.Models.Photo
 {
     public class PhotoViewModel
     {

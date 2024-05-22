@@ -20,9 +20,10 @@
                asp-route-id="@Model.Id">Delete Project</a>
             @* <a class="ml-2 btn btn-success pb-1 mb-1" asp-area="Admin" asp-controller="Photo" asp-action="AddPhotos"
             asp-route-id="@Model.Id">Add Photos</a> *@
-                    </div>
+        </div>
     </div>
     <p></p>
+    <hr />
     <div class="row">
         <form asp-area="Admin"
               asp-controller="Photo"
@@ -33,5 +34,23 @@
             <button class="ml-2 btn btn-success pb-1 mb-1" type="submit">Add Photo(s)</button>
         </form>
     </div>
+    <hr />
+    <!-- Gallery -->
+    <div class="row">
+        
+            @foreach (var photo in Model.Photos)
+            {
+                string imageBase64Data = Convert.ToBase64String(photo.ImageData);
+                string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                <img src="@imageDataURL"
+                     class="w-100 shadow-1-strong rounded mb-4"
+                     alt="Sample Photo" />
+            </div>
+            }
+        
+
+    </div>
+    <!-- Gallery -->
 </div>
 
