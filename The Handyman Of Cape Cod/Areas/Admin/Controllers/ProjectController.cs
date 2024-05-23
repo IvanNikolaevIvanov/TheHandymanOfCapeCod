@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 using TheHandymanOfCapeCod.Core.Contracts;
 using TheHandymanOfCapeCod.Core.Models.Project;
+using TheHandymanOfCapeCod.Infrastructure.Constants;
 
 namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
 {
@@ -13,7 +15,7 @@ namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
             IProjectService _projectService,
             IPhotoService _photoService)
         {
-             projectService = _projectService;
+            projectService = _projectService;
             photoService = _photoService;
         }
 
@@ -46,19 +48,35 @@ namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
             return View(model);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> AddCategory(CategoryFormModel model)
-        //{
+        [HttpPost]
+        public async Task<IActionResult> AddProject(AddProjectFormModel model)
+        {
+            DateTime projectDate = DateTime.Now;
 
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(model);
-        //    }
+            if (!DateTime.TryParseExact(model.ProjectStartDate,
+                DataConstants.DateFormat,
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out projectDate))
+            {
+                ModelState.AddModelError(nameof(model.ProjectStartDate),
+                    $"Invalid date! Format must be: {DataConstants.DateFormat}");
+            }
 
-        //    await projectService.AddCategoryAsync(model);
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
-        //    return RedirectToAction(nameof(AllCategories));
-        //}
+            //var listOfFiles = Request.Form.Files.ToList();
+            int id = 0;
+
+            await projectService.AddProjectAsync(model.Title, projectDate);
+
+            id = await projectService.GetLastProjectIdAsync();
+
+            return RedirectToAction(nameof(Details), new { id });
+        }
 
         //[HttpGet]
         //public async Task<IActionResult> EditCategory(int id)

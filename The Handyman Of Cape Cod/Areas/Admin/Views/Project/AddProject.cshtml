@@ -21,10 +21,10 @@
                 <input asp-for="@Model.ProjectStartDate" class="form-control" aria-required="true" value="@DateTime.Now.ToString("yyyy-MM-dd H:mm")" />
                 <span asp-validation-for="@Model.ProjectStartDate" class="text-danger"></span>
             </div>
-            <div class="mb-3">
+            @* <div class="mb-3">
                 <label class="form-label-add-edit">Photos:</label>
                 <input formenctype="multipart/form-data" type="file" id="file1" name="file1" multiple="multiple" />
-            </div>
+            </div> *@
             <div class="mb-3">
                 <input class="btn btn-warning mb-2 w-100 p-3 fw-bold" type="submit" value="Add" />
             </div>

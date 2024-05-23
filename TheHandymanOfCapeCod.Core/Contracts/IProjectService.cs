@@ -1,4 +1,5 @@
-﻿using TheHandymanOfCapeCod.Core.Models.Project;
+﻿using Microsoft.AspNetCore.Http;
+using TheHandymanOfCapeCod.Core.Models.Project;
 
 namespace TheHandymanOfCapeCod.Core.Contracts
 {
@@ -10,5 +11,8 @@ namespace TheHandymanOfCapeCod.Core.Contracts
 
         Task<bool> ProjectExistsAsync(int id);
 
+        Task AddProjectAsync(string title, DateTime dateTime);
+
+        Task<int> GetLastProjectIdAsync();
     }
 }

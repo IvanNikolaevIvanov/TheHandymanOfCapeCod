@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 using static TheHandymanOfCapeCod.Core.Constants.MessageConstants;
 using static TheHandymanOfCapeCod.Infrastructure.Constants.DataConstants;
 
@@ -14,5 +15,7 @@ namespace TheHandymanOfCapeCod.Core.Models.Project
 
         [Required(ErrorMessage = RequiredMessage)]
         public string ProjectStartDate { get; set; } = string.Empty;
+
+        //public List<IFormFile> Files = new List<IFormFile>();
     }
 }

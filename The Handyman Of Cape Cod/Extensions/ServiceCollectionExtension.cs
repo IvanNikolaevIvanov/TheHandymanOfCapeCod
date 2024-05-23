@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using ConnectingApps.SmartInject;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using The_Handyman_Of_Cape_Cod.Infrastructure.Data;
 using TheHandymanOfCapeCod.Core.Contracts;
 using TheHandymanOfCapeCod.Core.Services;
 using TheHandymanOfCapeCod.Infrastructure.Data.Common;
+
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -14,6 +16,8 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<IPhotoService, PhotoService>();
+
+            //services.AddLazyScoped<IPhotoService, PhotoService>();
 
             return services;
         }
