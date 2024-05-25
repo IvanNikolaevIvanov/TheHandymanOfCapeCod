@@ -5,7 +5,7 @@ namespace TheHandymanOfCapeCod.Core.Contracts
 {
     public interface IProjectService
     {
-        Task<IEnumerable<ProjectViewModel>> AllProjectsAsync();
+        Task<IEnumerable<ProjectViewModel>> AllProjectsAsync(string sortOrder);
 
         Task<ProjectDetailsViewModel> ProjectDetailsByIdAsync(int id);
 

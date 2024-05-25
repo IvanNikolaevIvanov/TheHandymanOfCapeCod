@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using System.Globalization;
 using TheHandymanOfCapeCod.Core.Contracts;
 using TheHandymanOfCapeCod.Core.Models.Project;
@@ -20,11 +21,23 @@ namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> AllProjects()
+        public async Task<IActionResult> AllProjects(string sortOrder)
         {
-            var model = await projectService.AllProjectsAsync();
+            // Order By Date Descending Default
+            ViewData["DateSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Date" : "";
+            ViewData["NameSortParm"] = sortOrder == "Title" ? "title_desc" : "Title";
 
-            return View(model);
+            // Order By Title Default
+            //ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            //ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+
+            var queryResult = await projectService.AllProjectsAsync(
+               sortOrder);
+
+            //model.totalProjectsCount = queryResult.totalProjectsCount;
+            //model.Projects = queryResult.Projects;
+
+            return View(queryResult);
         }
 
         [HttpGet]

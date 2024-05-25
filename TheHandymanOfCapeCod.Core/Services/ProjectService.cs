@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using System.Globalization;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection.PortableExecutable;
 using TheHandymanOfCapeCod.Core.Contracts;
 using TheHandymanOfCapeCod.Core.Models.Project;
 using TheHandymanOfCapeCod.Infrastructure.Constants;
 using TheHandymanOfCapeCod.Infrastructure.Data.Common;
 using TheHandymanOfCapeCod.Infrastructure.Data.Models;
-using ConnectingApps.SmartInject;
 
 
 namespace TheHandymanOfCapeCod.Core.Services
@@ -14,7 +12,7 @@ namespace TheHandymanOfCapeCod.Core.Services
     public class ProjectService : IProjectService
     {
         private readonly IRepository repository;
-        
+
 
         public ProjectService(
             IRepository _repository)
@@ -33,23 +31,38 @@ namespace TheHandymanOfCapeCod.Core.Services
 
             await repository.AddAsync(newProject);
             await repository.SaveChangesAsync();
- 
+
         }
 
-        public async Task<IEnumerable<ProjectViewModel>> AllProjectsAsync()
+        public async Task<IEnumerable<ProjectViewModel>> AllProjectsAsync(string sortOrder)
         {
-            var projectsToShow = await repository.AllReadOnly<Project>()
-                .OrderByDescending(p => p.DateCreated)
+            var projects = repository.AllReadOnly<Project>();
+
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    projects = projects.OrderByDescending(p => p.Title);
+                    break;
+                case "Date":
+                    projects = projects.OrderBy(p => p.DateCreated);
+                    break;
+                case "Title":
+                    projects = projects.OrderBy(p => p.Title);
+                    break;
+                default:
+                    projects = projects.OrderByDescending(p => p.DateCreated);
+                    break;
+            }
+
+            return await projects
                 .Select(p => new ProjectViewModel()
                 {
                     Id = p.Id,
                     Title = p.Title,
-                    ProjectStartDate = p.DateCreated.ToString(DataConstants.DateFormat)
+                    Date = p.DateCreated.ToString(DataConstants.DateFormat)
                 })
                 .ToListAsync();
 
-
-            return projectsToShow;
         }
 
         public async Task<int> GetLastProjectIdAsync()

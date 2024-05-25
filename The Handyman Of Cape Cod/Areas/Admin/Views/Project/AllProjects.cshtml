@@ -15,32 +15,57 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th><label>Id</label></th>
-            <th><label>Title</label></th>
-            <th><label>Date</label></th>
+            <th><label>#</label></th>
+            <th><a asp-area="Admin" asp-controller="Project" asp-action="AllProjects" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Title)</a></th>
+            <th><a asp-area="Admin" asp-controller="Project" asp-action="AllProjects" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.Date)</a></th>
         </tr>
     </thead>
     <tbody>
+        @{
+            int i = 0;
+        }
         @foreach (var project in Model)
         {
+            i++;
             <tr>
                 <td>
-                    <label>@project.Id</label>
+                    <label>@i</label>
                 </td>
                 <td>
                     <label>
                         <a asp-area="Admin" asp-controller="Project" asp-action="Details" asp-route-id="@project.Id">@project.Title</a>
-                        </label>
+                    </label>
                 </td>
                 <td>
-                    <label>@project.ProjectStartDate</label>
+                    <label>@project.Date</label>
                 </td>
-                 @* <td>
-                    <a class="btn btn-warning m-1" asp-controller="Specialist" asp-action="EditSpecialist"
-                       asp-route-id="@project.Id">Details</a>
-                </td> *@
+                @* <td>
+            <a class="btn btn-warning m-1" asp-controller="Specialist" asp-action="EditSpecialist"
+            asp-route-id="@project.Id">Details</a>
+            </td> *@
             </tr>
         }
 
     </tbody>
 </table>
+
+@* @{
+    var entriesPerPage = Model.projectsPerPage;
+    var totalEntries = Model.totalProjectsCount;
+    var currentPage = Model.currentPage;
+    var previousPage = currentPage - 1;
+    if (previousPage < 1)
+    { previousPage = 1; }
+
+    var maxPage = Math.Ceiling((double)totalEntries / entriesPerPage);
+}
+
+<nav aria-label="Search results pages">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+</nav> *@
