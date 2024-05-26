@@ -21,8 +21,13 @@ namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> AllProjects(string sortOrder)
+        public async Task<IActionResult> AllProjects(
+            string sortOrder,
+            string currentFilter,
+            string searchString,
+            int? pageNumber)
         {
+            ViewData["CurrentSort"] = sortOrder;
             // Order By Date Descending Default
             ViewData["DateSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Date" : "";
             ViewData["NameSortParm"] = sortOrder == "Title" ? "title_desc" : "Title";
@@ -31,11 +36,22 @@ namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
             //ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             //ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
 
-            var queryResult = await projectService.AllProjectsAsync(
-               sortOrder);
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
 
-            //model.totalProjectsCount = queryResult.totalProjectsCount;
-            //model.Projects = queryResult.Projects;
+            ViewData["CurrentFilter"] = searchString;
+
+            var queryResult = await projectService.AllProjectsAsync(
+               sortOrder,
+               currentFilter,
+               searchString,
+               pageNumber);
 
             return View(queryResult);
         }

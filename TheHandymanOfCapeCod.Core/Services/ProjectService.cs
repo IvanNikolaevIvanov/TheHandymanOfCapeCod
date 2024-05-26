@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Net.NetworkInformation;
 using System.Reflection.PortableExecutable;
 using TheHandymanOfCapeCod.Core.Contracts;
 using TheHandymanOfCapeCod.Core.Models.Project;
 using TheHandymanOfCapeCod.Infrastructure.Constants;
 using TheHandymanOfCapeCod.Infrastructure.Data.Common;
 using TheHandymanOfCapeCod.Infrastructure.Data.Models;
+using TheHandymanOfCapeCod.Core.Tools;
 
 
 namespace TheHandymanOfCapeCod.Core.Services
@@ -34,9 +36,21 @@ namespace TheHandymanOfCapeCod.Core.Services
 
         }
 
-        public async Task<IEnumerable<ProjectViewModel>> AllProjectsAsync(string sortOrder)
+        public async Task<IEnumerable<ProjectViewModel>> AllProjectsAsync(
+            string sortOrder,
+            string currentFilter,
+            string searchString,
+            int? pageNumber)
         {
+
+            
             var projects = repository.AllReadOnly<Project>();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                projects = projects
+                    .Where(p => p.Title.ToUpper().Contains(searchString.ToUpper()));
+            }
 
             switch (sortOrder)
             {
@@ -54,7 +68,11 @@ namespace TheHandymanOfCapeCod.Core.Services
                     break;
             }
 
-            return await projects
+            int pageSize = 3;
+
+
+
+            var projectsToReturn = await projects
                 .Select(p => new ProjectViewModel()
                 {
                     Id = p.Id,
@@ -62,6 +80,8 @@ namespace TheHandymanOfCapeCod.Core.Services
                     Date = p.DateCreated.ToString(DataConstants.DateFormat)
                 })
                 .ToListAsync();
+
+            return PaginatedList<ProjectViewModel>.CreateAsync(projectsToReturn, pageNumber ?? 1, pageSize);
 
         }
 
