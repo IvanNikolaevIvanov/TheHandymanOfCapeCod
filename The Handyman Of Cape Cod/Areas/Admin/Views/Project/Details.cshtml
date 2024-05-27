@@ -10,17 +10,19 @@
 <div class="container" style="display:inline">
     <div class="row">
         <div class="card col-6 border-0">
-            <div class="card-body">
-                <h5 class="card-title"><u>@Model.Title</u></h5>
-                <p class="card-text">Date: <b>@Model.ProjectStartDate</b></p>
-            </div>
+            <h5 class="card-title"><u>@Model.Title</u></h5>
+            <p class="card-text">Date: <b>@Model.ProjectStartDate</b></p>
+
         </div>
-        <div class="card col-6 border-0">
-            <a class="btn btn-danger pb-1 mb-1" asp-area="Admin" asp-controller="Project" asp-action="DeleteProject"
+        <div class="card col-3 offset-md-2 border-0">
+            <a class="btn btn-danger float-end pb-1 mb-1" asp-area="Admin" asp-controller="Project" asp-action="DeleteProject"
                asp-route-id="@Model.Id">Delete Project</a>
-            @* <a class="ml-2 btn btn-success pb-1 mb-1" asp-area="Admin" asp-controller="Photo" asp-action="AddPhotos"
-            asp-route-id="@Model.Id">Add Photos</a> *@
+            <a class="btn btn-warning float-end pb-1 mb-1" asp-area="Admin" asp-controller="Project" asp-action="EditProject"
+               asp-route-id="@Model.Id">Edit Project</a>
         </div>
+
+        @* <a class="ml-2 btn btn-success pb-1 mb-1" asp-area="Admin" asp-controller="Photo" asp-action="AddPhotos"
+        asp-route-id="@Model.Id">Add Photos</a> *@
     </div>
     <p></p>
     <hr />
@@ -37,18 +39,18 @@
     <hr />
     <!-- Gallery -->
     <div class="row">
-        
-            @foreach (var photo in Model.Photos)
-            {
-                string imageBase64Data = Convert.ToBase64String(photo.ImageData);
-                string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+
+        @foreach (var photo in Model.Photos)
+        {
+            string imageBase64Data = Convert.ToBase64String(photo.ImageData);
+            string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
             <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
                 <img src="@imageDataURL"
                      class="w-100 shadow-1-strong rounded mb-4"
                      alt="Sample Photo" />
             </div>
-            }
-        
+        }
+
 
     </div>
     <!-- Gallery -->
