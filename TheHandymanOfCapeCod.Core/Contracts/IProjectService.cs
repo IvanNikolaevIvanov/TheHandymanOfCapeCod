@@ -18,5 +18,9 @@ namespace TheHandymanOfCapeCod.Core.Contracts
         Task AddProjectAsync(string title, DateTime dateTime);
 
         Task<int> GetLastProjectIdAsync();
+
+        Task<AddProjectFormModel> GetProjectFormByIdAsync(int id);
+
+        Task EditAsync(int id, string Title, DateTime dateTime);
     }
 }

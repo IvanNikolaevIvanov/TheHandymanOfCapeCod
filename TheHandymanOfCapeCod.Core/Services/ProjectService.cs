@@ -85,12 +85,37 @@ namespace TheHandymanOfCapeCod.Core.Services
 
         }
 
+        public async Task EditAsync(int id, string title, DateTime dateTime )
+        {
+            var projectToEdit = await repository.GetByIdAsync<Project>(id);
+            if (projectToEdit != null)
+            {
+                projectToEdit.Title = title;
+                projectToEdit.DateCreated = dateTime;
+
+                await repository.SaveChangesAsync();
+            }
+        }
+
         public async Task<int> GetLastProjectIdAsync()
         {
             return await repository.AllReadOnly<Project>()
                 .Select(p => p.Id)
                 .OrderBy(x => x)
                 .LastAsync();
+        }
+
+        public async Task<AddProjectFormModel> GetProjectFormByIdAsync(int id)
+        {
+            var projectToEdit = await repository.GetByIdAsync<Project>(id);
+            var model = new AddProjectFormModel();
+            if (projectToEdit != null)
+            {
+                model.Title = projectToEdit.Title;
+                model.ProjectStartDate = projectToEdit.DateCreated.ToString();
+            }
+            
+            return model;
         }
 
         public async Task<ProjectDetailsViewModel> ProjectDetailsByIdAsync(int id)

@@ -107,36 +107,48 @@ namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
             return RedirectToAction(nameof(Details), new { id });
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> EditCategory(int id)
-        //{
-        //    if (!await projectService.ExistsAsync(id))
-        //    {
-        //        return BadRequest();
-        //    }
+        [HttpGet]
+        public async Task<IActionResult> EditProject(int id)
+        {
+            if (!await projectService.ProjectExistsAsync(id))
+            {
+                return BadRequest();
+            }
 
-        //    var model = await projectService.GetCategoryFormByIdAsync(id);
+            var model = await projectService.GetProjectFormByIdAsync(id);
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
 
-        //[HttpPost]
-        //public async Task<IActionResult> EditCategory(int id, CategoryDetailsViewModel model)
-        //{
-        //    if (!await projectService.ExistsAsync(id))
-        //    {
-        //        return BadRequest();
-        //    }
+        [HttpPost]
+        public async Task<IActionResult> EditProject(int id, AddProjectFormModel model)
+        {
+            if (!await projectService.ProjectExistsAsync(id))
+            {
+                return BadRequest();
+            }
 
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(model);
-        //    }
+            DateTime projectDate = DateTime.Now;
 
-        //    await projectService.EditAsync(id, model);
+            if (!DateTime.TryParseExact(model.ProjectStartDate,
+                DataConstants.DateFormat,
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out projectDate))
+            {
+                ModelState.AddModelError(nameof(model.ProjectStartDate),
+                    $"Invalid date! Format must be: {DataConstants.DateFormat}");
+            }
 
-        //    return RedirectToAction(nameof(AllCategories));
-        //}
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await projectService.EditAsync(id, model.Title, projectDate);
+
+            return RedirectToAction(nameof(Details), new { id });
+        }
 
         //[HttpGet]
         //public async Task<IActionResult> DeleteCategory(int id)
