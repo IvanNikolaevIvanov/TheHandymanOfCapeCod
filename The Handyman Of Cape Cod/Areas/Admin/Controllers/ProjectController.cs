@@ -150,25 +150,30 @@ namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
             return RedirectToAction(nameof(Details), new { id });
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> DeleteCategory(int id)
-        //{
-        //    if (!await projectService.ExistsAsync(id))
-        //    {
-        //        return BadRequest();
-        //    }
+        [HttpGet]
+        public async Task<IActionResult> DeleteProject(int id)
+        {
+            if (!await projectService.ProjectExistsAsync(id))
+            {
+                return BadRequest();
+            }
 
-        //    var categoryToDelete = await projectService.GetCategoryFormByIdAsync(id);
+            var projectToDelete = await projectService.GetProjectByIdAsync(id);
 
-        //    var model = new CategoryViewModel()
-        //    {
-        //        Id = id,
-        //        Title = categoryToDelete.Title,
-        //        Description = categoryToDelete.Description,
-        //        ImgUrl = categoryToDelete.ImgUrl
-        //    };
+            return View(projectToDelete);
+        }
 
-        //    return View(model);
-        //}
+        [HttpPost]
+        public async Task<IActionResult> DeleteProject(ProjectViewModel model)
+        {
+            if (!await projectService.ProjectExistsAsync(model.Id))
+            {
+                return BadRequest();
+            }
+
+            await projectService.DeleteProjectAsync(model.Id);
+
+            return RedirectToAction(nameof(AllProjects));
+        }
     }
 }

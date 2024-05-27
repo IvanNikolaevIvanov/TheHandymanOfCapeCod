@@ -21,6 +21,10 @@ namespace TheHandymanOfCapeCod.Core.Contracts
 
         Task<AddProjectFormModel> GetProjectFormByIdAsync(int id);
 
+        Task<ProjectViewModel> GetProjectByIdAsync(int id);
+
         Task EditAsync(int id, string Title, DateTime dateTime);
+
+        Task DeleteProjectAsync(int id);
     }
 }

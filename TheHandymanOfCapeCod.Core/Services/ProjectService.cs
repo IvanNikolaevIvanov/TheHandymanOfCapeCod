@@ -43,7 +43,7 @@ namespace TheHandymanOfCapeCod.Core.Services
             int? pageNumber)
         {
 
-            
+
             var projects = repository.AllReadOnly<Project>();
 
             if (!String.IsNullOrEmpty(searchString))
@@ -85,7 +85,7 @@ namespace TheHandymanOfCapeCod.Core.Services
 
         }
 
-        public async Task EditAsync(int id, string title, DateTime dateTime )
+        public async Task EditAsync(int id, string title, DateTime dateTime)
         {
             var projectToEdit = await repository.GetByIdAsync<Project>(id);
             if (projectToEdit != null)
@@ -114,7 +114,7 @@ namespace TheHandymanOfCapeCod.Core.Services
                 model.Title = projectToEdit.Title;
                 model.ProjectStartDate = projectToEdit.DateCreated.ToString();
             }
-            
+
             return model;
         }
 
@@ -142,6 +142,27 @@ namespace TheHandymanOfCapeCod.Core.Services
         {
             return await repository.AllReadOnly<Project>()
                 .AnyAsync(p => p.Id == id);
+        }
+
+        public async Task DeleteProjectAsync(int id)
+        {
+            await repository.DeleteAsync<Project>(id);
+
+            await repository.SaveChangesAsync();
+        }
+
+        public async Task<ProjectViewModel> GetProjectByIdAsync(int id)
+        {
+            var projectToDelete = await repository.GetByIdAsync<Project>(id);
+            var model = new ProjectViewModel();
+            if (projectToDelete != null)
+            {
+                model.Id = projectToDelete.Id;
+                model.Title = projectToDelete.Title;
+                model.Date = projectToDelete.DateCreated.ToString();
+            }
+
+            return model;
         }
     }
 }
