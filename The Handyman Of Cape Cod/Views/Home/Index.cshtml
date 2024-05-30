@@ -1,49 +1,59 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<div id="HomepageBody">
-</div> 
 
-<div class="mb-5"></div>
-
-@* <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        @for (int i = 0; i < houses.Count(); i++)
-        {
-            var house = houses[i];
-            <div class="carousel-item @(i == 0 ? "active" : string.Empty)">
-                <img class="d-block w-100" style="height:500px"
-                     src="@house.ImageUrl" alt="@house.Title">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>
-                        <a class="btn btn-primary" asp-controller="House" asp-action="Details"
-                           asp-route-id="@house.Id" asp-route-information="@house.GetInformation()"> @house.Title</a>
-                    </h5>
-                </div>
-            </div>
-        }
+@* <a asp-area="" asp-controller="Home" asp-action="Index">
+    <div class="row mb-5" id="HomepageBody">
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div> *@
+</a> *@
+<div class="row mb-5 mt-2" id="carousel">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../../THoCC_Logo17_RGB_WebRes.png" class="rounded mx-auto d-block d-block w-100" id="logoImage" style="height:500px" alt="image">
+            </div>
+            <div class="carousel-item">
+                <img src="/img/CarouselImg1.jpg" class="rounded mx-auto d-block w-auto" style="height:500px" alt="image">
+            </div>
+            <div class="carousel-item">
+                <img src="/img/CarouselImg2.jpg" class="rounded mx-auto d-block w-auto" style="height:500px" alt="image">
+            </div>
+            <div class="carousel-item">
+                <img src="/img/CarouselImg3.jpg" class="rounded mx-auto d-block w-auto" style="height:500px" alt="image">
+            </div>
+            <div class="carousel-item">
+                <img src="/img/CarouselImg4.jpg" class="rounded mx-auto d-block w-auto" style="height:500px" alt="image">
+            </div>
+            <div class="carousel-item">
+                <img src="/img/CarouselImg5.jpg" class="rounded mx-auto d-block w-auto" style="height:500px" alt="image">
+            </div>
+            <div class="carousel-item">
+                <img src="/img/CarouselImg6.jpg" class="rounded mx-auto d-block w-auto" style="height:500px" alt="image">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
 
 <div class="mb-5"></div>
 
 
-<div class="row">
+<div class="row" id="contact">
     <div class="col-form-label">
-    <h2>Make An Inquiry</h2>
+        <h2>Make An Inquiry</h2>
     </div>
     <div class="column-gap-2">
         <a class="btn btn-success">Send</a>
     </div>
-  
+
 
 </div>
 
