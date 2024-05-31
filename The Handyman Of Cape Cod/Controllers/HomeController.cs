@@ -13,10 +13,18 @@ namespace The_Handyman_Of_Cape_Cod.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
+
+        //[HttpPost]
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
