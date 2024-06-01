@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TheHandymanOfCapeCod.Infrastructure.Data.Models;
 using TheHandymanOfCapeCod.Infrastructure.Data.SeedDb;
 
-namespace The_Handyman_Of_Cape_Cod.Infrastructure.Data
+namespace TheHandymanOfCapeCod.Infrastructure.Data
 {
     public class TheHandymanOfCapeCodDb : IdentityDbContext
     {

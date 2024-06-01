@@ -1,6 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using The_Handyman_Of_Cape_Cod.Infrastructure.Data;
+using TheHandymanOfCapeCod.Infrastructure.Data;
 
 namespace TheHandymanOfCapeCod.Infrastructure.Data.Common
 {

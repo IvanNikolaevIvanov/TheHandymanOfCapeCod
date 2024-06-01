@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using The_Handyman_Of_Cape_Cod.Infrastructure.Data;
+using TheHandymanOfCapeCod.Infrastructure.Data;
 
 #nullable disable
 

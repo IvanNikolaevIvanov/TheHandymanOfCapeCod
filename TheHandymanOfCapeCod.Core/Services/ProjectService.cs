@@ -1,12 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Net.NetworkInformation;
-using System.Reflection.PortableExecutable;
 using TheHandymanOfCapeCod.Core.Contracts;
 using TheHandymanOfCapeCod.Core.Models.Project;
+using TheHandymanOfCapeCod.Core.Tools;
 using TheHandymanOfCapeCod.Infrastructure.Constants;
 using TheHandymanOfCapeCod.Infrastructure.Data.Common;
 using TheHandymanOfCapeCod.Infrastructure.Data.Models;
-using TheHandymanOfCapeCod.Core.Tools;
 
 
 namespace TheHandymanOfCapeCod.Core.Services

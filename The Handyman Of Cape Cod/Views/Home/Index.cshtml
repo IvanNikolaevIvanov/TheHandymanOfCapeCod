@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IndexFormModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -49,25 +50,29 @@
         <div class="col-sm-6 offset-sm-3">
             <h2 class="d-flex justify-content-center">Make An Inquiry</h2>
             <div class="contact-form">
-                <form method="post">
+                <form asp-area="" asp-controller="Home" asp-action="SendMessage" method="post">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Your name" name="name" />
+                        <label asp-for="@Model.Name">Name:</label>
+                        <input asp-for="@Model.Name" type="text" class="form-control" />
+                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" placeholder="name@example.com" name="emailaddress" />
+                        <label asp-for="@Model.Email">Email address:</label>
+                        <input asp-for="@Model.Email" type="email" class="form-control"/>
+                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label for="number">Phone number</label>
-                        <input type="tel" class="form-control" id="number" placeholder="your phone number" name="phonenumber" />
+                        <label asp-for="@Model.PhoneNumber">Phone number:</label>
+                        <input asp-for="@Model.PhoneNumber" type="tel" class="form-control"/>
+                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea class="form-control" id="message" rows="5" name="message"></textarea>
+                        <label asp-for="@Model.Message">Message:</label>
+                        <textarea asp-for="@Model.Message" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="@Model.Message" class="text-danger"></span>
                     </div>
-                    <div>
-                        <input type="submit" value="Send email" />
+                    <div class="mb-3">
+                        <input class="btn btn-success mb-2 w-100 p-3 fw-bold" type="submit" value="Send email" />
                     </div>
                 </form>
             </div>

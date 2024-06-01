@@ -1,9 +1,9 @@
-﻿using ConnectingApps.SmartInject;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using The_Handyman_Of_Cape_Cod.Infrastructure.Data;
+using TheHandymanOfCapeCod.Core.Configuration;
 using TheHandymanOfCapeCod.Core.Contracts;
 using TheHandymanOfCapeCod.Core.Services;
+using TheHandymanOfCapeCod.Infrastructure.Data;
 using TheHandymanOfCapeCod.Infrastructure.Data.Common;
 
 
@@ -16,8 +16,8 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<IPhotoService, PhotoService>();
+            services.AddScoped<IMailService, MailService>();
 
-            //services.AddLazyScoped<IPhotoService, PhotoService>();
 
             return services;
         }
@@ -48,6 +48,15 @@ namespace Microsoft.Extensions.DependencyInjection
                 })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<TheHandymanOfCapeCodDb>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddApplicationMailSettings(this IServiceCollection services, IConfiguration config)
+        {
+            services.Configure<MailSettings>(config.GetSection("MailSettings"));
+
+            
 
             return services;
         }
