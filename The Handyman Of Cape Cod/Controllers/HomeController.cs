@@ -6,6 +6,7 @@ using The_Handyman_Of_Cape_Cod.Models;
 using TheHandymanOfCapeCod.Core.Models.Message;
 using TheHandymanOfCapeCod.Core.Models.MailService;
 using System.Text;
+using TheHandymanOfCapeCod.Core.Constants;
 
 namespace The_Handyman_Of_Cape_Cod.Controllers
 {
@@ -26,14 +27,16 @@ namespace The_Handyman_Of_Cape_Cod.Controllers
         public IActionResult Index()
         {
             var model = new IndexFormModel();
+
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendMessage(IndexFormModel model)
+        public async Task<IActionResult> Index(IndexFormModel model)
         {
             if (!ModelState.IsValid)
             {
+                TempData[MessageConstants.EmailSendingFail] = "Message not sent! Please, try again!";
                 return View(model);
             }
 
@@ -52,7 +55,9 @@ namespace The_Handyman_Of_Cape_Cod.Controllers
 
             mailData.EmailBody = sb.ToString().TrimEnd();
 
-            await mailService.SendMailAsync( mailData );
+            await mailService.SendMailAsync(mailData);
+
+            TempData[MessageConstants.EmailSendingSuccess] = "Your message has been sent successfully!";
 
             return RedirectToAction(nameof(Index));
         }

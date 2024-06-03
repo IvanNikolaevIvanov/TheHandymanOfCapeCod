@@ -38,9 +38,6 @@ namespace TheHandymanOfCapeCod.Core.Services
 
                     project.Photos.Add(photo);
 
-                    //await repository.AddAsync<Photo>(photo);
-                    
-
                 }
             }
 
