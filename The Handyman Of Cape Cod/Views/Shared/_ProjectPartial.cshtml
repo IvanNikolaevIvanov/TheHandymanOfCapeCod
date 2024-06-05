@@ -1,0 +1,25 @@
+﻿@model ProjectViewModel
+@inject IProjectService projectService
+
+@{
+    int projectId = Model.Id;
+    string projectTitle = Model.Title;
+    string projectDate = Model.Date;
+    var projectDetails = await projectService.ProjectDetailsByIdAsync(projectId);
+    var projectPhotos = projectDetails.Photos.ToList();
+}
+
+<div class="col">
+    <h3>@projectTitle</h3>
+    <p>@projectDate</p>
+    <div class="container-fluid">
+        <div class="d-flex flex-row flex-wrap justify-content-center">
+            @foreach (var photo in projectPhotos)
+            {
+                string imageBase64Data = Convert.ToBase64String(photo.ImageData);
+                string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+                <img src="@imageDataURL" class="rounded m-2" alt="photo" width="600" height="450"  />
+            }
+        </div>
+    </div>
+</div>
