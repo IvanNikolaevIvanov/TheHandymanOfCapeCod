@@ -4,7 +4,7 @@
 @{
     int projectId = Model.Id;
     string projectTitle = Model.Title;
-    string projectDate = Model.Date;
+    string projectDate = Model.Date.Substring(0, 10);
     var projectDetails = await projectService.ProjectDetailsByIdAsync(projectId);
     var projectPhotos = projectDetails.Photos.ToList();
 }

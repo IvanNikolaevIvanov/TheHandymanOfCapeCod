@@ -9,28 +9,15 @@ namespace The_Handyman_Of_Cape_Cod.Controllers
 
         public GalleryController(IProjectService _projectService)
         {
-              projectService = _projectService;
+            projectService = _projectService;
         }
 
-        public async Task<IActionResult> RecentProjects(string sortOrder,
-            string currentFilter,
-            string searchString,
-            int? pageNumber)
+        public async Task<IActionResult> RecentProjects(
+         int? pageNumber)
         {
-            if (searchString != null)
-            {
-                pageNumber = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
+            int numberOfProjects = 15;
 
-            ViewData["CurrentFilter"] = searchString;
-
-            var model = await projectService.AllProjectsAsync(sortOrder,
-               currentFilter,
-               searchString,
+            var model = await projectService.GetRecentProjectsAsync(numberOfProjects,
                pageNumber);
 
             return View(model);

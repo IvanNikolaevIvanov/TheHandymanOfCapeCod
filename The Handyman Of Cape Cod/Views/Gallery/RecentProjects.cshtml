@@ -2,55 +2,16 @@
 @{
     ViewBag.Title = "Our Recent Projects";
 }
-
-<h2 class="text-center">@ViewBag.Title</h2>
+>
+<h2 class="text-center mt-2">
+    <a class="link-secondary"
+       asp-area=""
+       asp-controller="Gallery"
+       asp-action="RecentProjects">
+        @ViewBag.Title
+    </a>
+</h2>
 <hr />
-
-
-@* <form asp-area="Admin" asp-controller="Project" asp-action="AllProjects" method="get">
-    <div class="form-actions no-color">
-        <p>
-            Find by title: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-primary" /> |
-            <a asp-area="Admin" asp-controller="Project" asp-action="AllProjects">Back to Full List</a>
-        </p>
-    </div>
-</form> *@
-
-@* <table class="table table-striped">
-    <thead>
-        <tr>
-            <th><label>#</label></th>
-            <th><a asp-area="Admin" asp-controller="Project" asp-action="AllProjects" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Title</a></th>
-            <th><a asp-area="Admin" asp-controller="Project" asp-action="AllProjects" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Date</a></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var project in Model)
-        {
-            Model.CurrentIndex++;
-            <tr>
-                <td>
-                    <label>@Model.CurrentIndex</label>
-                </td>
-                <td>
-                    <label>
-                        <a asp-area="Admin" asp-controller="Project" asp-action="Details"
-                           asp-route-id="@project.Id">@project.Title</a>
-                    </label>
-                </td>
-                <td>
-                    <label>@project.Date</label>
-                </td>
-                @* <td>
-            <a class="btn btn-warning m-1" asp-controller="Specialist" asp-action="EditSpecialist"
-            asp-route-id="@project.Id">Details</a>
-            </td>
-            </tr>
-        }
-
-    </tbody>
-</table> *@
 
 <div class="row">
     @foreach (var project in Model)
@@ -67,17 +28,13 @@
 }
 <div class="d-flex flex-row flex-wrap justify-content-center">
     <a asp-area="" asp-controller="Gallery" asp-action="RecentProjects"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
        asp-route-pageNumber="@(Model.PageIndex - 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-secondary @prevDisabled">
-        Previous
+       class="btn btn-secondary m-1 @prevDisabled">
+        <<
     </a>
     <a asp-area="" asp-controller="Gallery" asp-action="RecentProjects"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
        asp-route-pageNumber="@(Model.PageIndex + 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-secondary @nextDisabled">
-        Next
+       class="btn btn-secondary m-1 @nextDisabled">
+        >>
     </a>
 </div>

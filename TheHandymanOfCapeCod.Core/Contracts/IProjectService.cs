@@ -26,5 +26,7 @@ namespace TheHandymanOfCapeCod.Core.Contracts
         Task EditAsync(int id, string Title, DateTime dateTime);
 
         Task DeleteProjectAsync(int id);
+
+        Task<IEnumerable<ProjectViewModel>> GetRecentProjectsAsync(int numberOfProjects, int? pageNumber);
     }
 }

@@ -34,6 +34,25 @@ namespace TheHandymanOfCapeCod.Core.Services
 
         }
 
+        public async Task<IEnumerable<ProjectViewModel>> GetRecentProjectsAsync(int numberOfProjects, int? pageNumber)
+        {
+            var projects = repository.AllReadOnly<Project>();
+
+            var projectsToShow = await projects
+                .OrderByDescending(p => p.DateCreated)
+                .Take(numberOfProjects)
+                .Select(p => new ProjectViewModel()
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                    Date = p.DateCreated.ToString(DataConstants.DateFormat)
+                })
+                .ToListAsync();
+
+
+            return PaginatedList<ProjectViewModel>.CreateAsync(projectsToShow, pageNumber ?? 1, 3);
+        }
+
         public async Task<IEnumerable<ProjectViewModel>> AllProjectsAsync(
             string sortOrder,
             string currentFilter,
@@ -43,6 +62,7 @@ namespace TheHandymanOfCapeCod.Core.Services
 
 
             var projects = repository.AllReadOnly<Project>();
+
 
             if (!String.IsNullOrEmpty(searchString))
             {
