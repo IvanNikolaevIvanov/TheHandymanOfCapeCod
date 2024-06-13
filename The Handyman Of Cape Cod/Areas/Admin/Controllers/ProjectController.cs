@@ -104,6 +104,8 @@ namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
 
             id = await projectService.GetLastProjectIdAsync();
 
+            TempData["message"] = "You have successfully added a new project.";
+
             return RedirectToAction(nameof(Details), new { id });
         }
 
@@ -117,6 +119,7 @@ namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
 
             var model = await projectService.GetProjectFormByIdAsync(id);
 
+           
             return View(model);
         }
 
@@ -147,6 +150,8 @@ namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
 
             await projectService.EditAsync(id, model.Title, projectDate);
 
+            TempData["message"] = "You have successfully edited a project.";
+
             return RedirectToAction(nameof(Details), new { id });
         }
 
@@ -172,6 +177,8 @@ namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
             }
 
             await projectService.DeleteProjectAsync(model.Id);
+
+            TempData["message"] = "Project deleted!";
 
             return RedirectToAction(nameof(AllProjects));
         }
