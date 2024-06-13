@@ -56,8 +56,6 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.Configure<MailSettings>(config.GetSection("MailSettings"));
 
-            
-
             return services;
         }
     }
