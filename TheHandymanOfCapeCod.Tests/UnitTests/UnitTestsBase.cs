@@ -16,8 +16,8 @@ namespace TheHandymanOfCapeCod.Tests.UnitTests
         public void SetUpBase()
         {
             data = DatabaseMock.Instance;
-            testRepository = new Repository(data);
             SeedDatabase();
+            testRepository = new Repository(data);
         }
 
         public Project FirstProject { get; set; } = null!;
@@ -52,7 +52,8 @@ namespace TheHandymanOfCapeCod.Tests.UnitTests
                 FirstProject, SecondProject, ThirdProject
             };
 
-            data.Projects.AddRangeAsync(projects);
+            data.AddRangeAsync(projects);
+            data.SaveChangesAsync();
 
         }
 

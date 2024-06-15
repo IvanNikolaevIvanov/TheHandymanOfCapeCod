@@ -60,9 +60,7 @@ namespace TheHandymanOfCapeCod.Core.Services
             int? pageNumber)
         {
 
-
             var projects = repository.AllReadOnly<Project>();
-
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -87,8 +85,6 @@ namespace TheHandymanOfCapeCod.Core.Services
             }
 
             int pageSize = 3;
-
-
 
             var projectsToReturn = await projects
                 .Select(p => new ProjectViewModel()

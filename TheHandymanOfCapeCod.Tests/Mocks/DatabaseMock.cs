@@ -9,7 +9,7 @@ namespace TheHandymanOfCapeCod.Tests.Mocks
             get 
             {
                 var dbContextOptions = new DbContextOptionsBuilder<TheHandymanOfCapeCodDb>()
-                    .UseInMemoryDatabase("TheHandymanOfCapeCodInMemoryDb"
+                    .UseInMemoryDatabase(databaseName: "TheHandymanOfCapeCodInMemoryDb"
                     + DateTime.Now.Ticks.ToString())
                     .Options;
 
