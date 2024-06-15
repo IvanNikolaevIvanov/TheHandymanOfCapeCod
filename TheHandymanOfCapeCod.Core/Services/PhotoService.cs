@@ -8,14 +8,10 @@ namespace TheHandymanOfCapeCod.Core.Services
     public class PhotoService : IPhotoService
     {
         private readonly IRepository repository;
-        private readonly IProjectService projectService;
 
-        public PhotoService(
-            IRepository _repository,
-            IProjectService _projectService)
+        public PhotoService(IRepository _repository)
         {
             repository = _repository;
-            projectService = _projectService;
         }
 
         public async Task UploadPhotosAsync(int projectId, List<IFormFile> files)
