@@ -32,7 +32,7 @@
               asp-action="AddPhotos"
               asp-route-id="@Model.Id" method="post"
               enctype="multipart/form-data">
-            <input type="file" id="file1" name="file1" multiple="multiple" />
+            <input type="file" id="file1" name="file1" multiple="multiple" accept="image/png, image/gif, image/jpeg, image/jpg"  />
             <button class="ml-2 btn btn-success pb-1 mb-1" type="submit">Add Photo(s)</button>
         </form>
     </div>

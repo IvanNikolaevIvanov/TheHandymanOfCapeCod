@@ -2,6 +2,7 @@
 using TheHandymanOfCapeCod.Core.Contracts;
 using TheHandymanOfCapeCod.Core.Models.Photo;
 
+
 namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
 {
     public class PhotoController : AdminBaseController
@@ -26,6 +27,19 @@ namespace The_Handyman_Of_Cape_Cod.Areas.Admin.Controllers
             }
 
             var listOfFiles = Request.Form.Files.ToList();
+
+            string[] supportedTypes = {"jpg", "jpeg", "png", "gif"};
+
+            foreach (var file in listOfFiles)
+            {
+                var fileExt = System.IO.Path.GetExtension(file.FileName).Substring(1);
+
+                if (!supportedTypes.Contains(fileExt))
+                {
+                    ModelState.AddModelError("Error", "File Extension Is InValid - Only Upload JPG/JPEG/PNG/GIF File");
+                    return BadRequest(ModelState);
+                }
+            }
 
             await photoService.UploadPhotosAsync(id, listOfFiles);
 

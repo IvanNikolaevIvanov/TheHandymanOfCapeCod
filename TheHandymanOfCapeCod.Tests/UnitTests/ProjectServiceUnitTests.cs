@@ -1,14 +1,13 @@
 ﻿using TheHandymanOfCapeCod.Core.Contracts;
 using TheHandymanOfCapeCod.Core.Models.Project;
 using TheHandymanOfCapeCod.Core.Services;
-using TheHandymanOfCapeCod.Infrastructure.Data.Models;
 
 namespace TheHandymanOfCapeCod.Tests.UnitTests
 {
     public class ProjectServiceUnitTests : UnitTestsBase
     {
         private IProjectService projectService;
-
+       
         [SetUp]
         public void SetUp() => projectService = new ProjectService(testRepository);
 
