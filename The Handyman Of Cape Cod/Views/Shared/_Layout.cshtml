@@ -17,7 +17,7 @@
         <nav class="navbar navbar-expand-lg bg-success" data-bs-theme="success">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/THoCC_Logo17_RGB_WebRes.png" alt="lighthouse" width="160" height="80" class="bg-body-tertiary rounded-pill p-sm-2 m-2" />
+                    <img src="~/THoCC_Logo17_RGB_WebRes.png" alt="lighthouse" width="200" height="80" class="bg-body-tertiary rounded-pill p-sm-2 m-2" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -32,10 +32,10 @@
                             <a class="nav-link text-bg-success" asp-area="" asp-controller="Gallery" asp-action="RecentProjects">Gallery</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-bg-success" href="#AboutUs">About Us</a>
+                            <a class="nav-link text-bg-success" asp-area="" asp-controller="Home" asp-action="Index" asp-fragment="AboutUs">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-bg-success" href="#ContactUs">Contact Us</a>
+                            <a class="nav-link text-bg-success" asp-area="" asp-controller="Home" asp-action="Index" asp-fragment="ContactUs">Contact Us</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
