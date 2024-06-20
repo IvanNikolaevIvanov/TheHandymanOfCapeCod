@@ -41,8 +41,8 @@ namespace The_Handyman_Of_Cape_Cod.Controllers
             }
 
             MailData mailData = new MailData();
-            mailData.EmailToId = "ivanivanovat@gmail.com";
-            mailData.EmailToName = "Ivan Ivanov";
+            mailData.EmailToId = "handymanofcapecod@gmail.com";
+            mailData.EmailToName = "Krasimir Kirov";
             mailData.EmailSubject = "New client inquiry";
 
             var sb = new StringBuilder();
