@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34601.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Handyman Of Cape Cod", "The Handyman Of Cape Cod\The Handyman Of Cape Cod.csproj", "{53CF856C-7D3C-483A-A70D-EFDA5798CCB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheHandymanOfCapeCod.Web", "The Handyman Of Cape Cod\TheHandymanOfCapeCod.Web.csproj", "{53CF856C-7D3C-483A-A70D-EFDA5798CCB2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheHandymanOfCapeCod.Core", "TheHandymanOfCapeCod.Core\TheHandymanOfCapeCod.Core.csproj", "{49B825A1-9CC1-4304-895B-D9D795901BD7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheHandymanOfCapeCod.Infrastructure", "TheHandymanOfCapeCod.Infrastructure\TheHandymanOfCapeCod.Infrastructure.csproj", "{59B66B89-BD6E-4C08-8628-A711536E2713}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheHandymanOfCapeCod.Tests", "TheHandymanOfCapeCod.Tests\TheHandymanOfCapeCod.Tests.csproj", "{32EC52DB-6B00-47DA-A3AB-CE8189C20398}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheHandymanOfCapeCod.Tests", "TheHandymanOfCapeCod.Tests\TheHandymanOfCapeCod.Tests.csproj", "{32EC52DB-6B00-47DA-A3AB-CE8189C20398}"
 	ProjectSection(ProjectDependencies) = postProject
 		{49B825A1-9CC1-4304-895B-D9D795901BD7} = {49B825A1-9CC1-4304-895B-D9D795901BD7}
 		{59B66B89-BD6E-4C08-8628-A711536E2713} = {59B66B89-BD6E-4C08-8628-A711536E2713}
