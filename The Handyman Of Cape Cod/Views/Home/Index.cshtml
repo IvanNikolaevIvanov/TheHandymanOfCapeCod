@@ -9,7 +9,7 @@
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="../../THoCC_Logo17_RGB_WebRes.png" class="rounded mx-auto d-block d-block w-100" id="logoImage" style="height:500px" alt="image">
+                    <img src="../../THoCC_Logo17_RGB_WebRes.png" class="rounded img-fluid" id="logoImage" alt="image">
                 </div>
                 <div class="carousel-item">
                     <img src="/img/Carousel/CarouselImg1.jpg" class="rounded mx-auto d-block w-auto" style="height:500px" alt="image">
@@ -122,10 +122,15 @@
                         <span asp-validation-for="@Model.Message" class="text-danger"></span>
                     </div>
                     <div class="mb-3 mt-2">
-                        <input class="btn btn-success mb-2 w-100 p-3 fw-bold" type="submit" value="Send email" />
+                        <input class="btn btn-primary mb-2 w-100 p-3 fw-bold" type="submit" value="Send email" />
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+@* <div class="container mt-5 mb-5">
+    <div class="row rounded-1 align-items-center justify-content-around">
+    </div>
+</div> *@

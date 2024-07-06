@@ -8,13 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/toastr/toastr.min.css" />
-    <link rel="stylesheet" href="~/The_Handyman_Of_Cape_Cod.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
 </head>
 <body class="d-flex flex-column min-vh-100">
     <header>
-        <nav class="navbar navbar-expand-lg bg-success" data-bs-theme="success">
+        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="primary">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/THoCC_Logo17_RGB_WebRes.png" alt="lighthouse" width="200" height="80" class="bg-body-tertiary rounded-pill p-sm-2 m-2" />
@@ -26,16 +24,16 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" id="navbarColor02">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-bg-success" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-bg-primary" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-bg-success" asp-area="" asp-controller="Gallery" asp-action="RecentProjects">Gallery</a>
+                            <a class="nav-link text-bg-primary" asp-area="" asp-controller="Gallery" asp-action="RecentProjects">Gallery</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-bg-success" asp-area="" asp-controller="Home" asp-action="Index" asp-fragment="AboutUs">About Us</a>
+                            <a class="nav-link text-bg-primary" asp-area="" asp-controller="Home" asp-action="Index" asp-fragment="AboutUs">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-bg-success" asp-area="" asp-controller="Home" asp-action="Index" asp-fragment="ContactUs">Contact Us</a>
+                            <a class="nav-link text-bg-primary" asp-area="" asp-controller="Home" asp-action="Index" asp-fragment="ContactUs">Contact Us</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -62,33 +60,35 @@
     </div>
 
     <!--Footer-->
-    <footer class="bg-light text-lg-start mt-auto">
-        <hr class="m-0" />
-        <div class="row row-cols-2 m-0 p-0" id="social">
-            <div class="col text-center py-4 align-items-center">
-                <p><b>Follow us on social media:</b></p>
-                <a href="https://www.facebook.com/Handymanofcapecod/" class="btn btn-primary m-1" role="button" rel="nofollow" data-mdb-ripple-init
-                   target="_blank">
-                    <i class="fa fa-facebook"></i>
-                </a>
-                <a href="https://www.instagram.com/thehandymanofcapecod/" class="btn btn-primary m-1" role="button" rel="nofollow" data-mdb-ripple-init
-                   target="_blank">
-                    <i class="fa fa-instagram"></i>
-                </a>
+    <div class="container-fluid">
+        <footer class="bg-light text-lg-start mt-auto">
+            <hr class="m-0" />
+            <div class="d-flex flex-row m-0 p-1" id="social">
+                <div class="col text-center py-4 align-items-center">
+                    <p><b>Follow us on social media:</b></p>
+                    <a href="https://www.facebook.com/Handymanofcapecod/" class="btn btn-primary m-1" role="button" rel="nofollow" data-mdb-ripple-init
+                       target="_blank">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/thehandymanofcapecod/" class="btn btn-primary m-1" role="button" rel="nofollow" data-mdb-ripple-init
+                       target="_blank">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </div>
+                <div class="col text-center py-4 align-items-center">
+                    <p><b>Contacts:</b></p>
+                    <p><i class="fa fa-mobile me-1" aria-hidden="true"></i>  +1 774-208-3395  </p>
+                    <p class="flex-fill"><i class="fa fa-envelope-o me-1" aria-hidden="true"></i> handymanofcapecod@gmail.com </p>
+                </div>
             </div>
-            <div class="col py-4 text-center align-items-end">
-                <p><b>Contacts:</b></p>
-                <p><i class="fa fa-mobile me-1" aria-hidden="true"></i>+1 774-208-3395</p>
-                <p> <i class="fa fa-envelope-o me-1" aria-hidden="true"></i>handymanofcapecod@gmail.com</p>
-            </div>
-        </div>
 
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © @DateTime.Today.Year - The Handyman Of Cape Cod
-        </div>
-        <!-- Copyright -->
-    </footer>
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © @DateTime.Today.Year - The Handyman Of Cape Cod
+            </div>
+            <!-- Copyright -->
+        </footer>
+    </div>
     <!--Footer-->
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
